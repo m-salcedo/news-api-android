@@ -2,6 +2,9 @@ package com.msalcedo.dinnews.app
 
 import android.support.multidex.MultiDexApplication
 import com.msalcedo.dinnews.R
+import com.msalcedo.dinnews.app.di.AppComponent
+import com.msalcedo.dinnews.app.di.AppModule
+import com.msalcedo.dinnews.app.di.DaggerAppComponent
 import timber.log.Timber
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
@@ -13,14 +16,27 @@ class Application : MultiDexApplication() {
 
     private val TAG = "TAG_${Application::class.java.simpleName}"
 
+    companion object {
+        lateinit var component: AppComponent
+    }
+
     override fun onCreate() {
         super.onCreate()
 
+        daggerConfig()
         calligraphyConfig()
         timberConfig()
     }
 
-    fun calligraphyConfig() {
+    private fun daggerConfig() {
+        component = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
+
+        component.inject(this)
+    }
+
+    private fun calligraphyConfig() {
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
                 .setDefaultFontPath(getString(R.string.font_regular))
                 .setFontAttrId(R.attr.fontPath)

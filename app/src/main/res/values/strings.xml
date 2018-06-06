@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">DinNews</string>
+    <string name="url_api_current">https://newsapi.org</string>
 
     <!--Splash-->
     <string name="splash_title">\@string/app_name</string>
     <string name="splash_subtitle">C/MIND Mobile Task</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

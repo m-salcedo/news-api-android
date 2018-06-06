@@ -1,13 +1,47 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.41'
+
+    ext {
+        application_id = 'com.msalcedo.dinnews'
+
+        version_code = 1
+        version_name = "0.0.1"
+
+
+        // Versions of the build
+        min_sdk_version = '17'
+        target_sdk_version = '27'
+        compile_sdk_version = 27
+
+        // Gradle
+        gradle_version = '3.1.2'
+
+        // Kotlin
+        kotlin_version = '1.2.41'
+
+        // Versions of dependencies
+        android_support_version = '27.1.0'
+        calligraphy_version = '2.3.0'
+        dagger_version = '2.14.1'
+        joda_time_version = '2.9.4'
+        play_services_version = '10.2.4'
+        okhttp_version = '3.9.1'
+        picasso_version = '2.5.2'
+        retrofit_version = '2.3.0'
+        rxjava_version = '2.1.9'
+        rxandroid_version = '2.0.1'
+        rxbinding_version = '2.1.0'
+        rxpermissions_version = '0.9.5@aar'
+        lifecycle_version = '1.1.1'
+    }
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong

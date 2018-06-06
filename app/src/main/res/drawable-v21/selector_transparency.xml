@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WORKING SOLUTION -->
+<!-- Ripple effect does work as well as the alpha drawable bg_congrats_img -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/black_30_percent">
+    <item android:id="@android:id/mask" android:drawable="@drawable/btn_mask"/>
+    <item android:drawable="@drawable/transparent" />
+</ripple>

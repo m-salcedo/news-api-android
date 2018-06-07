@@ -19,11 +19,9 @@ interface Constant {
             val AUTHORIZATION = "Authorization"
             val JWT = "JWT "
             val BEARER = "Bearer "
-
             val ID = "id"
             val ID_STR = "id_str"
             val NAME = "name"
-
             val USERS = "users"
             val AUTH = "auth"
         }

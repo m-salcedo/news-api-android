@@ -19,6 +19,8 @@ open class RxActivity : AppCompatActivity() {
 
     private val rxLifeObserver = RxLifeObserver()
 
+    open fun initializeComponent() {}
+
     val disposables: CompositeDisposable?
         get() = rxLifeObserver.disposables
 
@@ -84,9 +86,13 @@ open class RxActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeComponent()
         savedInstanceState?.let { onCreateSubject?.onNext(it) }
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        init()
     }
+
+    open fun init() {}
 
     fun addDisposable(disposable: Disposable) {
         rxLifeObserver.addDisposable(disposable)

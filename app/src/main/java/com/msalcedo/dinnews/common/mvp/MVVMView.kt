@@ -1,6 +1,7 @@
 package com.msalcedo.dinnews.common.mvp
 
 import android.app.ProgressDialog
+import android.arch.lifecycle.ViewModel
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.widget.FrameLayout
@@ -14,7 +15,7 @@ import org.jetbrains.anko.toast
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/6/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
-abstract class MVPView(override val activity: RxActivity): FrameLayout(activity), MVPContract.View {
+abstract class MVVMView<ViewModel>(override val activity: RxActivity): FrameLayout(activity), MVPContract.View<ViewModel> {
 
     private var progressDialog: ProgressDialog? = null
 

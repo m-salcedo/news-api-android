@@ -2,7 +2,6 @@ package com.msalcedo.dinnews.common.mvp
 
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
-import android.view.ViewGroup
 import com.msalcedo.dinnews.common.RxActivity
 
 /**
@@ -11,11 +10,11 @@ import com.msalcedo.dinnews.common.RxActivity
  */
 abstract class MVPContract {
 
-    interface Model
+    interface ViewModel
 
-    interface View {
+    interface View<ViewModel> {
         val activity: RxActivity
-        fun inflateLayout(container: ViewGroup? = null): android.view.View?
+        val viewModel: ViewModel
         fun showToast(message: String, longTime: Boolean = true)
         fun showToast(message: Int, longTime: Boolean = true)
         fun showProgress(message: String, cancelable: Boolean = false)
@@ -24,10 +23,4 @@ abstract class MVPContract {
         fun showConfirmation(title: Int, message: Int, listener: DialogInterface.OnClickListener): AlertDialog?
     }
 
-    interface Presenter {
-        val view: View
-        val model: Model
-        fun onCreate()
-        fun onDestroy()
-    }
 }

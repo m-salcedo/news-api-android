@@ -4,10 +4,8 @@ import android.content.Context
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.di.AppQualifier
 import com.msalcedo.dinnews.app.di.AppScope
-import com.msalcedo.dinnews.common.storage.SessionManager
 import com.msalcedo.dinnews.utils.Constant
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
 
@@ -17,8 +15,7 @@ import javax.inject.Inject
  */
 @AppScope
 class AuthenticationInterceptor @Inject constructor(
-        @AppQualifier val context: Context,
-        val sessionManager: SessionManager
+        @AppQualifier val context: Context
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response? {

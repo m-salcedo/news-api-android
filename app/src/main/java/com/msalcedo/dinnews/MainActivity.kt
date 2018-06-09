@@ -19,11 +19,12 @@ class MainActivity : RxActivity() {
 
         Timber.d("testing")
 
-        addDisposable(
-                Application.component.api().everything()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ Timber.d("testiing") }, { }))
+//        addDisposable(
+//                Application.component.api().everything(params.key)
+//                        .subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe({ Timber.d("testiing") }, { }))
+//
     }
 
     companion object {

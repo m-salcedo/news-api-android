@@ -14,14 +14,15 @@
             android:id="@+id/containerLeft"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="50"/>
+            android:layout_weight="35"
+            android:background="@color/blue_500" />
 
         <FrameLayout
             android:id="@+id/containerRight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="50"/>
-
+            android:layout_weight="65"
+            android:background="@color/red_200" />
 
 
     </LinearLayout>

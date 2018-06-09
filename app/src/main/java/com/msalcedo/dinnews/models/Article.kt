@@ -1,8 +1,7 @@
 package com.msalcedo.dinnews.models
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
+import com.google.gson.Gson
+import com.squareup.moshi.Json
 
 
 /**
@@ -11,26 +10,22 @@ import com.google.gson.annotations.SerializedName
  */
 class Article {
 
-    @SerializedName("source")
-    @Expose
-    var source: Source? = null
-    @SerializedName("author")
-    @Expose
-    var author: Any? = null
-    @SerializedName("title")
-    @Expose
-    var title: String? = null
-    @SerializedName("description")
-    @Expose
-    var description: String? = null
-    @SerializedName("url")
-    @Expose
-    var url: String? = null
-    @SerializedName("urlToImage")
-    @Expose
-    var urlToImage: String? = null
-    @SerializedName("publishedAt")
-    @Expose
-    var publishedAt: String? = null
+    @Json(name = "source")
+    val source: Source? = null
+    @Json(name = "author")
+    val author: Any? = null
+    @Json(name = "title")
+    val title: String? = null
+    @Json(name = "description")
+    val description: String? = null
+    @Json(name = "url")
+    val url: String? = null
+    @Json(name = "urlToImage")
+    val urlToImage: Any? = null
+    @Json(name = "publishedAt")
+    val publishedAt: String? = null
 
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
 }

@@ -28,7 +28,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/6/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
-@Module(includes = [(NetworkModule::class)])
+@Module(includes = arrayOf(NetworkModule::class))
 class RetrofitModule {
 
     @Provides
@@ -38,19 +38,12 @@ class RetrofitModule {
 
     @Provides
     @AppScope
-    fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
+    fun provideConverterFactory(@FlatObjectsQualifier moshi: Moshi): Converter.Factory =
+            MoshiConverterFactory.create(moshi)
 
     @Provides
     @AppScope
-    fun provideGson(): Gson {
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(DateTime::class.java, DateTimeConverter())
-        gsonBuilder.registerTypeHierarchyAdapter(Collection::class.java, CollectionTypedAdapter())
-        gsonBuilder.registerTypeHierarchyAdapter(Long::class.java, LongTypedAdapter())
-        gsonBuilder.registerTypeHierarchyAdapter(Double::class.java, DoubleTypedAdapter())
-        gsonBuilder.excludeFieldsWithoutExposeAnnotation()
-        return gsonBuilder.create()
-    }
+    fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
 
     @Provides
     @AppScope
@@ -58,12 +51,12 @@ class RetrofitModule {
     fun provideAuthenticatedRetrofit(
             @BaseUrlQualifier baseUrl: String,
             @AuthenticationQualifier client: OkHttpClient,
-            gson: Gson,
+            converter: Converter.Factory,
             callAdapter: CallAdapter.Factory): Retrofit =
             Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(converter)
                     .addCallAdapterFactory(callAdapter)
                     .build()
 
@@ -72,12 +65,12 @@ class RetrofitModule {
     fun provideRetrofit(
             @BaseUrlQualifier baseUrl: String,
             client: OkHttpClient,
-            gson: Gson,
+            converter: Converter.Factory,
             callAdapter: CallAdapter.Factory): Retrofit =
             Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(converter)
                     .addCallAdapterFactory(callAdapter)
                     .build()
 }

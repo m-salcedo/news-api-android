@@ -1,24 +1,23 @@
 package com.msalcedo.dinnews.common
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatDelegate
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.msalcedo.dinnews.R
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/6/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
-open class RxActivity : AppCompatActivity() {
+open class RxFragment : Fragment() {
 
     private val rxLifeObserver = RxLifeObserver()
 
@@ -83,15 +82,13 @@ open class RxActivity : AppCompatActivity() {
         onActivityResultSubject?.onNext(Result(requestCode, resultCode, data))
     }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeComponent()
-        savedInstanceState?.let { onCreateSubject?.onNext(it) }
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         init()
 
         if (resources.getBoolean(R.bool.twoPaneMode)) {
@@ -99,20 +96,13 @@ open class RxActivity : AppCompatActivity() {
         } else {
             initPortrait()
         }
+
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     open fun initPortrait() {}
 
     open fun initLandscape() {}
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        requestedOrientation = if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        } else {
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        }
-    }
 
     open fun init() {}
 
@@ -122,11 +112,6 @@ open class RxActivity : AppCompatActivity() {
 
     fun addDisposableForever(disposable: Disposable) {
         rxLifeObserver.addDisposableForever(disposable)
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        onRestartSubject?.onNext(Any())
     }
 
     override fun onStart() {

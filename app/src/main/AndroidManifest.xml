@@ -37,7 +37,7 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".screen.home.HomeActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:parentActivityName=".screen.splash.SplashActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustPan" />

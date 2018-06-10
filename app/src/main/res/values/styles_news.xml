@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="News" />
+
+    <style name="News.Header">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text.xlg</item>
+        <item name="fontPath">@string/font_bold</item>
+    </style>
+
+    <style name="News.ListTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text.xlg</item>
+        <item name="fontPath">@string/font_bold</item>
+    </style>
+
+    <style name="News.ListAuthor">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text.sm</item>
+        <item name="fontPath">@string/font_medium</item>
+    </style>
+
+    <style name="News.ListDescription">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text.sm</item>
+        <item name="fontPath">@string/font_light</item>
+    </style>
+
+</resources>

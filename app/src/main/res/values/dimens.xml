@@ -33,6 +33,7 @@
     <dimen name="spacing.xlg">48dp</dimen>
     <dimen name="spacing.xxlg">56dp</dimen>
     <dimen name="spacing.xxxlg">70dp</dimen>
+    <dimen name="spacing.xxxxlg">80dp</dimen>
 
     <!-- General Sizes -->
     <dimen name="view_padding">@dimen/spacing.md</dimen>

@@ -27,10 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing.xlg"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing.md"
+                android:layout_marginBottom="@dimen/spacing.xs"
+                android:layout_marginLeft="@dimen/spacing.xs"
+                android:layout_marginRight="@dimen/spacing.xs"
+                android:layout_marginTop="@dimen/spacing.xsm"
                 android:background="@drawable/box_text"
                 android:drawableEnd="@drawable/ic_action_search"
-                android:gravity="center"
+                android:gravity="left"
                 android:hint="@string/text_top_bar"
                 android:onClick="@{() -> eventHandler.onClickSearch()}" />
 

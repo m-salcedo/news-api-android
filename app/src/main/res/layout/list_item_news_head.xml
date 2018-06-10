@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:padding="@dimen/spacing.xs"
-        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:paddingBottom="@dimen/spacing.xs"
+        android:paddingLeft="@dimen/spacing.xs"
+        android:paddingTop="@dimen/spacing.xs">
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/blue_500"
-            android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:id="@+id/ivNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher" />
 
-    </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_40_percent" />
+
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            style="@style/News.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/spacing.md"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="10"
+            tools:text="Prueba de Noticia" />
+
+    </RelativeLayout>
 </layout>

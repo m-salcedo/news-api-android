@@ -29,6 +29,7 @@
 
     <color name="black_10_percent">#1f000000</color>
     <color name="black_30_percent">#4d000000</color>
+    <color name="black_40_percent">#60000000</color>
     <color name="black_50_percent">#77000000</color>
     <color name="black_transparency">#CF000000</color>
 

@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.msalcedo.dinnews.R
+import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.models.Article
+import com.msalcedo.dinnews.utils.RoundedCornersTransform
+import kotlinx.android.synthetic.main.list_item_news.view.*
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/8/18.
@@ -14,12 +17,12 @@ import com.msalcedo.dinnews.models.Article
 class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindTo(article: Article?) {
-//        itemView.UserName.text = user?.login
-//        GlideApp.with(itemView.context)
-//                .load(user?.avatarUrl)
-//                .placeholder(R.mipmap.ic_launcher)
-//                .into(itemView.UserAvatar)
-//        itemView.siteAdminIcon.visibility = if (user!!.siteAdmin) View.VISIBLE else View.GONE
+        itemView.tvNewsTitle.text = article!!.title
+        itemView.tvNewsDescription.text = article.description
+        Application.component.picasso().load(article.urlToImage)
+                .placeholder(R.drawable.placeholder_bg)
+                .transform(RoundedCornersTransform())
+                .into(itemView.ivNews)
     }
 
     companion object {

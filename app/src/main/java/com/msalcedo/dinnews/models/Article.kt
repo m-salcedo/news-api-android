@@ -4,8 +4,14 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import com.google.gson.Gson
+import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.ext.empty
 import com.squareup.moshi.Json
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
+import org.joda.time.format.ISODateTimeFormat
 
 
 /**
@@ -13,6 +19,14 @@ import com.squareup.moshi.Json
  * Copyright (c) m-salcedo. All rights reserved.
  */
 class Article {
+
+    companion object {
+        private val KEYWORD = "Europ"
+        const val KEY = "article"
+        const val PLACEHOLDER_IMAGE: String = "https://cdn.pixabay.com/photo/2017/03/14/16/57/silver-2143730_1280.jpg"
+        val adapter = Application.component.moshi().adapter(Article::class.java)!!
+    }
+
 
     @Json(name = "source")
     val source: Source? = null
@@ -31,6 +45,18 @@ class Article {
         }
     @Json(name = "publishedAt")
     val publishedAt: String? = null
+        get() {
+            if (field.empty()) return field
+            return parserDate().print(dateISO(field!!))
+        }
+
+    fun parserDate(): DateTimeFormatter {
+        return DateTimeFormat.forPattern("yyyy-MM-dd")
+    }
+
+    fun dateISO(s: String): DateTime {
+        return DateTime(s)
+    }
 
     fun getTitle(): Spanned? {
         return when {
@@ -46,10 +72,6 @@ class Article {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT)
             else -> Html.fromHtml(description)
         }
-    }
-
-    companion object {
-        const val PLACEHOLDER_IMAGE: String = "https://cdn.pixabay.com/photo/2017/03/14/16/57/silver-2143730_1280.jpg"
     }
 
     override fun toString(): String {

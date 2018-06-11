@@ -10,7 +10,8 @@ import com.msalcedo.dinnews.common.ext.empty
 class Filter {
 
     companion object {
-        private val KEYWORD = "Europ"
+        private val KEYWORD = "world cup"
+        private val LANGUAGE = "en"
         const val KEY = "filter"
         val adapter = Application.component.moshi().adapter(Filter::class.java)!!
     }
@@ -30,6 +31,10 @@ class Filter {
     var to: String? = null
     var language: String? = null
     var sources: String? = null
+    var positionSortBy: Int = 0
+    var positionLanguage: Int = 0
+    var positionCategory: Int = 0
+    var positionCountry: Int = 0
 
     private fun empty(): Boolean {
         return category.empty() &&
@@ -43,5 +48,9 @@ class Filter {
 
     fun getKeyWord(): String? {
         return if (q.empty() && empty()) KEYWORD else q
+    }
+
+    fun getLanguageDefault(): String? {
+        return if (language.empty() && empty()) LANGUAGE else language
     }
 }

@@ -11,6 +11,7 @@ import com.msalcedo.dinnews.common.RxActivity
 import com.msalcedo.dinnews.databinding.ActivityHomeBinding
 import com.msalcedo.dinnews.models.Article
 import com.msalcedo.dinnews.models.Filter
+import com.msalcedo.dinnews.screen.detail.DetailActivity
 import com.msalcedo.dinnews.screen.filter.FilterFragment
 import com.msalcedo.dinnews.screen.home.di.DaggerHomeComponent
 import com.msalcedo.dinnews.screen.home.di.HomeModule
@@ -74,6 +75,7 @@ class HomeActivity : RxActivity(),
 
     override fun onArticleSelected(article: Article) {
         Timber.d("Item selected: $article")
+        DetailActivity.start(this, article)
     }
 
     companion object {

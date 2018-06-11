@@ -7,6 +7,11 @@ import com.google.gson.Gson
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.ext.empty
 import com.squareup.moshi.Json
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
+import org.joda.time.format.ISODateTimeFormat
 
 
 /**
@@ -40,6 +45,18 @@ class Article {
         }
     @Json(name = "publishedAt")
     val publishedAt: String? = null
+        get() {
+            if (field.empty()) return field
+            return parserDate().print(dateISO(field!!))
+        }
+
+    fun parserDate(): DateTimeFormatter {
+        return DateTimeFormat.forPattern("yyyy-MM-dd")
+    }
+
+    fun dateISO(s: String): DateTime {
+        return DateTime(s)
+    }
 
     fun getTitle(): Spanned? {
         return when {

@@ -34,7 +34,8 @@
                 android:drawableEnd="@drawable/ic_action_search"
                 android:gravity="left"
                 android:hint="@string/text_top_bar"
-                android:onClick="@{() -> eventHandler.onClickSearch()}" />
+                android:onClick="@{() -> eventHandler.onClickSearch()}"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout

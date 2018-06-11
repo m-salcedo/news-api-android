@@ -31,6 +31,10 @@ class Filter {
     var to: String? = null
     var language: String? = null
     var sources: String? = null
+    var positionSortBy: Int = 0
+    var positionLanguage: Int = 0
+    var positionCategory: Int = 0
+    var positionCountry: Int = 0
 
     private fun empty(): Boolean {
         return category.empty() &&

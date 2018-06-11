@@ -31,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/spacing.md"
-                    android:text="Pocket - Run Pool is The Beste Billards Game on iOS"
+                    tools:text="Pocket - Run Pool is The Beste Billards Game on iOS"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text.xxxlg"
                     app:fontPath="@string/font_extra_bold" />
@@ -78,7 +78,7 @@
                                 android:id="@+id/tvDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1992-03-23"
+                                tools:text="1992-03-23"
                                 android:textColor="@color/black_50_percent"
                                 android:textSize="@dimen/text.default"
                                 app:fontPath="@string/font_light" />
@@ -87,7 +87,7 @@
                                 android:id="@+id/tvAuthor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Mariangela Salcedo"
+                                tools:text="Mariangela Salcedo"
                                 android:textColor="@color/black_50_percent"
                                 android:textSize="@dimen/text.default"
                                 app:fontPath="@string/font_light" />
@@ -100,8 +100,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/spacing.md"
                             android:layout_marginRight="@dimen/spacing.md"
-                            android:layout_marginTop="@dimen/spacing.lg"
-                            android:text="oiewfjpcoj ewpfopwe fpoj wefoiw efhwo; fwopf jo;ewf ;owiefj;woiefji fejw oj fi;w ejpoje fwei f;owe f;weoi fioewfj ;owief jowief wiefj wef;weofi w;oef jw;eof j;woei fjweijf ;woeijf ;oewj f;ewiojf ;weio fj;eowi f;ewoijf ewj f;eowj f;eoij f"
+                            android:layout_marginTop="@dimen/spacing.sm"
+                            tools:text="oiewfjpcoj ewpfopwe fpoj wefoiw efhwo; fwopf jo;ewf ;owiefj;woiefji fejw oj fi;w ejpoje fwei f;owe f;weoi fioewfj ;owief jowief wiefj wef;weofi w;oef jw;eof j;woei fjweijf ;woeijf ;oewj f;ewiojf ;weio fj;eowi f;ewoijf ewj f;eowj f;eoij f"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text.lg"
                             app:fontPath="@string/font_light" />

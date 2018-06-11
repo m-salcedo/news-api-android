@@ -1,7 +1,6 @@
 package com.msalcedo.dinnews.common.mvp
 
 import android.app.ProgressDialog
-import android.arch.lifecycle.ViewModel
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.widget.FrameLayout

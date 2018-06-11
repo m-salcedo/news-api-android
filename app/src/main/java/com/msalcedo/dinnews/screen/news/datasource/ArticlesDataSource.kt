@@ -8,10 +8,9 @@ import com.msalcedo.dinnews.models.Filter
 import com.msalcedo.dinnews.models.ResponseArticle
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.functions.Action
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
@@ -125,7 +124,7 @@ class ArticlesDataSource(
                 filter.language,
                 filter.from,
                 filter.to,
-                filter.q,
+                filter.getKeyWord(),
                 filter.sortBy)
     }
 
@@ -135,7 +134,7 @@ class ArticlesDataSource(
                 filter.category,
                 filter.country,
                 filter.language,
-                filter.q,
+                filter.getKeyWord(),
                 filter.sortBy)
     }
 }

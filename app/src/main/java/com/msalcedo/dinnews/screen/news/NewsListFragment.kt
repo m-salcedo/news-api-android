@@ -9,12 +9,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxFragment
 import com.msalcedo.dinnews.databinding.FragmentNewsListBinding
 import com.msalcedo.dinnews.models.Article
+import com.msalcedo.dinnews.models.Filter
 import com.msalcedo.dinnews.screen.news.adapter.ArticleAdapter
 import com.msalcedo.dinnews.screen.news.datasource.NetworkState
 import com.msalcedo.dinnews.screen.news.datasource.Status
@@ -59,6 +59,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
     override fun init() {
         Timber.d("test " + context?.getString(R.string.api_key_news))
 
+        binding.tvBox.text = viewModel.getKeyWord()
         initAdapter()
         initSwipeToRefresh()
     }
@@ -70,10 +71,18 @@ class NewsListFragment : RxFragment(), NewListEvent {
         binding.recyclerNews.adapter = articleAdapter
 
         viewModel.articleListTop.observe(this, Observer<PagedList<Article>> {
-            val result = it
+            var resultTop = it
             viewModel.articleList.observe(this, Observer<PagedList<Article>> {
-                articleAdapter.submitList(it)
-                articleAdapter.listTopHeadlines(result)
+
+                var resultList = it
+
+                if ((resultList == null || resultList.isEmpty()) && resultTop != null) {
+                    resultList = resultTop
+                    resultTop = null
+                }
+
+                articleAdapter.submitList(resultList)
+                articleAdapter.listTopHeadlines(resultTop)
                 binding.recyclerNews.scrollToPosition(0)
             })
         })
@@ -126,7 +135,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
         listener = null
     }
 
-    interface OnListFragmentInteractionListener : AdapterView.OnItemClickListener {
+    interface OnListFragmentInteractionListener : ArticleAdapter.OnArticleSelected {
         fun onClickSearch()
     }
 
@@ -142,10 +151,10 @@ class NewsListFragment : RxFragment(), NewListEvent {
     companion object {
 
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(filter: Filter) =
                 NewsListFragment().apply {
                     arguments = Bundle().apply {
-                        //  putInt(ARG_COLUMN_COUNT, columnCount)
+                        putString(Filter.KEY, Filter.adapter.toJson(filter))
                     }
                 }
     }

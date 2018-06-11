@@ -3,7 +3,6 @@ package com.msalcedo.dinnews.screen.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.msalcedo.dinnews.MainActivity
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity

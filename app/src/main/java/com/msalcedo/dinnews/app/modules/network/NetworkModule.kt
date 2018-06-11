@@ -1,7 +1,6 @@
 package com.msalcedo.dinnews.app.modules.network
 
 import android.content.Context
-import com.msalcedo.dinnews.BuildConfig
 import com.msalcedo.dinnews.app.di.*
 import com.msalcedo.dinnews.utils.Constant
 import dagger.Module

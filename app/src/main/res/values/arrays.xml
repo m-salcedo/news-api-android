@@ -27,7 +27,6 @@
     </array>
 
     <array name="languages_code">
-        <item>All categories</item>
         <item>ar</item>
         <item>de</item>
         <item>en</item>
@@ -61,7 +60,6 @@
     </array>
 
     <array name="countries_code">
-        <item>All countries_code</item>
         <item>ae</item>
         <item>ar</item>
         <item>at</item>

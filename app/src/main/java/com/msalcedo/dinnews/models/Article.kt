@@ -1,5 +1,8 @@
 package com.msalcedo.dinnews.models
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import com.google.gson.Gson
 import com.msalcedo.dinnews.common.ext.empty
 import com.squareup.moshi.Json
@@ -16,16 +19,34 @@ class Article {
     @Json(name = "author")
     val author: String? = null
     @Json(name = "title")
-    val title: String? = null
+    private val title: String? = null
     @Json(name = "description")
-    val description: String? = null
+    private val description: String? = null
     @Json(name = "url")
     val url: String? = null
     @Json(name = "urlToImage")
     val urlToImage: String? = null
-    get() {return if (field == null || field.empty()) PLACEHOLDER_IMAGE else field}
+        get() {
+            return if (field == null || field.empty()) PLACEHOLDER_IMAGE else field
+        }
     @Json(name = "publishedAt")
     val publishedAt: String? = null
+
+    fun getTitle(): Spanned? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(title)
+        }
+    }
+
+    fun getDescription(): Spanned? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(description)
+        }
+    }
 
     companion object {
         const val PLACEHOLDER_IMAGE: String = "https://cdn.pixabay.com/photo/2017/03/14/16/57/silver-2143730_1280.jpg"

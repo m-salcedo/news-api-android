@@ -24,7 +24,6 @@ class NewsViewModel : ViewModel(), NewsContract.ViewModel {
 
     private val TAG = "TAG_${NewsViewModel::class.java.simpleName}"
 
-    private val KEYWORD = "trump"
 
     lateinit var articleList: LiveData<PagedList<Article>>
 
@@ -33,6 +32,8 @@ class NewsViewModel : ViewModel(), NewsContract.ViewModel {
     private var api: InterfaceApi = Application.component.api()
 
     private val compositeDisposable = CompositeDisposable()
+
+    private var filter: Filter = Filter()
 
     private val pageSize = 20
 
@@ -49,7 +50,7 @@ class NewsViewModel : ViewModel(), NewsContract.ViewModel {
                 .setEnablePlaceholders(false)
                 .build()
 
-        var filter = Filter.adapter.fromJson(bundle.getString(Filter.KEY, "{\"q\":\"$KEYWORD\"}"))
+        filter = Filter.adapter.fromJson(bundle.getString(Filter.KEY, "{}"))
 
         sourceFactoryTop = ArticlesDataSourceFactory(compositeDisposable, api, filter, true)
 
@@ -77,6 +78,10 @@ class NewsViewModel : ViewModel(), NewsContract.ViewModel {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+    }
+
+    fun getKeyWord(): CharSequence? {
+        return filter.q
     }
 
 }

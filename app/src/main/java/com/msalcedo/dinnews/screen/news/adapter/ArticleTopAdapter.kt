@@ -4,7 +4,6 @@ import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.models.Article
 
@@ -14,7 +13,7 @@ import com.msalcedo.dinnews.models.Article
  */
 
 class ArticleTopAdapter(
-        private val onItemClickListener: AdapterView.OnItemClickListener
+        private val listener: ArticleAdapter.OnArticleSelected
 ) : PagedListAdapter<Article, RecyclerView.ViewHolder>(DiffCallback) {
 
 
@@ -29,8 +28,7 @@ class ArticleTopAdapter(
         (holder as ArticleTopViewHolder).bindTo(getItem(position))
 
         holder.itemView.setOnClickListener({
-            onItemClickListener.onItemClick(null,
-                    holder.itemView, position, position.toLong())
+            getItem(position)?.let { it -> listener.onArticleSelected(it) }
         })
 
     }

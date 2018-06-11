@@ -3,11 +3,8 @@ package com.msalcedo.dinnews.screen.home
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.View
-import android.widget.AdapterView
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
@@ -44,15 +41,11 @@ class HomeActivity : RxActivity(),
 
     override fun init() {
         viewModel.start()
-    }
-
-    override fun initPortrait() {
-        mountFragment(NewsListFragment.newInstance(), R.id.container)
+        mountFragment(NewsListFragment.newInstance(viewModel.getFilter()), R.id.container)
     }
 
     override fun initLandscape() {
-        mountFragment(NewsListFragment.newInstance(), R.id.containerRight)
-        mountFragment(FilterFragment.newInstance(), R.id.containerLeft)
+        mountFragment(FilterFragment.newInstance(viewModel.getFilter()), R.id.containerLeft)
     }
 
     private fun mountFragment(fragment: Fragment, containter: Int) {
@@ -61,12 +54,13 @@ class HomeActivity : RxActivity(),
         transaction.commit()
     }
 
-    override fun onSearch(filter: Filter) {
-        Timber.d("Search $filter")
+    override fun search(filter: Filter) {
+        viewModel.setFilter(filter)
+        mountFragment(NewsListFragment.newInstance(viewModel.getFilter()), R.id.container)
     }
 
     override fun onClickSearch() {
-        mountFragment(FilterFragment.newInstance(), R.id.container)
+        mountFragment(FilterFragment.newInstance(viewModel.getFilter()), R.id.container)
     }
 
     override fun initializeComponent() {
@@ -78,7 +72,8 @@ class HomeActivity : RxActivity(),
                 .inject(this)
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+    override fun onArticleSelected(article: Article) {
+        Timber.d("Item selected: $article")
     }
 
     companion object {

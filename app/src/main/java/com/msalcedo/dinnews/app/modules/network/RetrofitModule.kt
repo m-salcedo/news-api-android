@@ -1,27 +1,19 @@
 package com.msalcedo.dinnews.app.modules.network
 
 import android.content.res.Resources
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.di.AppScope
 import com.msalcedo.dinnews.app.di.AuthenticationQualifier
 import com.msalcedo.dinnews.app.di.BaseUrlQualifier
 import com.msalcedo.dinnews.app.di.FlatObjectsQualifier
-import com.msalcedo.dinnews.utils.CollectionTypedAdapter
-import com.msalcedo.dinnews.utils.DateTimeConverter
-import com.msalcedo.dinnews.utils.DoubleTypedAdapter
-import com.msalcedo.dinnews.utils.LongTypedAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import org.joda.time.DateTime
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**

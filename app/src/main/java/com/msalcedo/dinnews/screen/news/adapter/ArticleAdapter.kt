@@ -5,7 +5,6 @@ import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.models.Article
 import com.msalcedo.dinnews.screen.news.datasource.NetworkState
@@ -16,7 +15,7 @@ import com.msalcedo.dinnews.screen.news.datasource.NetworkState
  */
 class ArticleAdapter(
         private val retryCallback: () -> Unit,
-        private val onItemClickListener: AdapterView.OnItemClickListener
+        private val listener: OnArticleSelected
 ) : PagedListAdapter<Article, RecyclerView.ViewHolder>(DiffCallback) {
 
     private var networkState: NetworkState? = null
@@ -38,7 +37,7 @@ class ArticleAdapter(
             R.layout.list_item_news -> {
                 (holder as ArticleViewHolder).bindTo(getItem(position - 1))
                 holder.itemView.setOnClickListener({
-                    onItemClickListener.onItemClick(null, holder.itemView, position, position.toLong())
+                    getItem(position - 1)?.let { it -> listener.onArticleSelected(it) }
                 })
             }
             R.layout.item_network_state -> (holder as NetworkStateViewHolder).bindTo(networkState)
@@ -101,10 +100,14 @@ class ArticleAdapter(
     }
 
     private fun initAdapter() {
-        articleAdapter = ArticleTopAdapter(onItemClickListener)
+        articleAdapter = ArticleTopAdapter(listener)
         if (listTop != null) {
             articleAdapter!!.submitList(listTop)
         }
+    }
+
+    interface OnArticleSelected {
+        fun onArticleSelected(article: Article);
     }
 
     companion object {

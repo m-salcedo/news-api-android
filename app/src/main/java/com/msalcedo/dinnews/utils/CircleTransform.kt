@@ -2,13 +2,16 @@ package com.msalcedo.dinnews.utils
 
 import android.graphics.*
 import com.squareup.picasso.Transformation
+import android.graphics.BitmapShader
+import android.graphics.Bitmap
+
 
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/10/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
-class RoundedCornersTransform : Transformation {
+class CircleTransform : Transformation {
     override fun transform(source: Bitmap): Bitmap {
         val size = Math.min(source.width, source.height)
 
@@ -24,17 +27,19 @@ class RoundedCornersTransform : Transformation {
 
         val canvas = Canvas(bitmap)
         val paint = Paint()
-        val shader = BitmapShader(squaredBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        val shader = BitmapShader(squaredBitmap,
+                Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         paint.shader = shader
         paint.isAntiAlias = true
 
-        val r = size / 8f
-        canvas.drawRoundRect(RectF(0f, 0f, source.width.toFloat(), source.height.toFloat()), r, r, paint)
+        val r = size / 2f
+        canvas.drawCircle(r, r, r, paint)
+
         squaredBitmap.recycle()
         return bitmap
     }
 
     override fun key(): String {
-        return "rounded_corners"
+        return "circle"
     }
 }

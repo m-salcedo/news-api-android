@@ -14,8 +14,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_top_bar">Search</string>
     <string name="retry">Retry</string>
-    <string name="from">From: (e.g. February 14 2018)</string>
+    <string name="from">From: All time</string>
     <string name="search">search</string>
-    <string name="to">To: (e.g. June 18 2018)</string>
+    <string name="to">To: All time</string>
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -12,25 +12,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <Button
-                style="@style/Button.Purple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing.xsm"
-                android:layout_marginLeft="@dimen/spacing.md"
-                android:layout_marginRight="@dimen/spacing.md"
-                android:onClick="@{() -> eventHandler.onClickSearch()}"
-                android:text="@string/search" />
-
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -86,7 +69,9 @@
                         android:background="@drawable/box_text"
                         android:drawableEnd="@drawable/ic_action_date_range"
                         android:gravity="left"
-                        android:hint="@string/from" />
+                        android:hint="@string/from"
+                        android:paddingStart="@dimen/spacing.sm"
+                        tools:ignore="RtlSymmetry" />
 
                 </LinearLayout>
 
@@ -107,7 +92,8 @@
                         android:background="@drawable/box_text"
                         android:drawableEnd="@drawable/ic_action_date_range"
                         android:gravity="left"
-                        android:hint="@string/to" />
+                        android:hint="@string/to"
+                        android:paddingStart="@dimen/spacing.sm" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,6 +175,24 @@
             </LinearLayout>
 
         </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                style="@style/Button.Purple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing.xsm"
+                android:layout_marginLeft="@dimen/spacing.md"
+                android:layout_marginRight="@dimen/spacing.md"
+                android:onClick="@{() -> eventHandler.onClickSearch()}"
+                android:text="@string/search" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

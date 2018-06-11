@@ -19,7 +19,7 @@
             tools:background="@color/blue_500" />
 
         <FrameLayout
-            android:id="@+id/containerRight"
+            android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="65"

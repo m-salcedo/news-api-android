@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.models.Article
-import com.msalcedo.dinnews.utils.RoundedCornersTransform
 import kotlinx.android.synthetic.main.list_item_news_head.view.*
 
 /**
@@ -17,10 +16,9 @@ import kotlinx.android.synthetic.main.list_item_news_head.view.*
 class ArticleTopViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindTo(article: Article?) {
-        itemView.tvNewsTitle.text = article!!.title
+        itemView.tvNewsTitle.text = article!!.getTitle()
         Application.component.picasso().load(article.urlToImage)
                 .placeholder(R.drawable.placeholder_bg)
-                .transform(RoundedCornersTransform())
                 .into(itemView.ivNews)
     }
 

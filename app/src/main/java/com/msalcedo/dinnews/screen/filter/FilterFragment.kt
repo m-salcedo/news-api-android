@@ -3,15 +3,19 @@ package com.msalcedo.dinnews.screen.filter
 import android.app.DatePickerDialog
 import android.content.Context
 import android.databinding.DataBindingUtil
-import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxFragment
+import com.msalcedo.dinnews.common.ext.empty
 import com.msalcedo.dinnews.databinding.FragmentFilterBinding
 import com.msalcedo.dinnews.models.Filter
 import com.msalcedo.dinnews.screen.filter.di.DaggerFilterComponent
@@ -30,16 +34,19 @@ class FilterFragment : RxFragment(), NewListEvent {
 
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var binding: FragmentFilterBinding
-    private val filter: Filter = Filter()
-    private lateinit var date: DatePickerDialog.OnDateSetListener
 
     @Inject
     lateinit var viewModel: FilterViewModel
 
+    private var checkSpLanguage: Boolean = false
+    private var checkSpCountry: Boolean = false
+    private var checkSpCategory: Boolean = false
+    private var checkSpSort: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            viewModel.setBundle(arguments!!)
         }
     }
 
@@ -54,13 +61,18 @@ class FilterFragment : RxFragment(), NewListEvent {
     }
 
     override fun init() {
-        Timber.d("test " + context?.getString(R.string.api_key_news))
-
+        initBoxSearch()
         initPicketDate()
         initCategories()
         initLanguages()
         initCountries()
         initSort()
+    }
+
+    private fun initBoxSearch() {
+        binding.etBox.setText(viewModel.getKeyWord())
+        val pos = binding.etBox.text.toString().length
+        binding.etBox.setSelection(pos)
     }
 
 
@@ -78,6 +90,8 @@ class FilterFragment : RxFragment(), NewListEvent {
     override fun initLandscape() {
         super.initLandscape()
         binding.btn.visibility = View.GONE
+
+        listenerSearch()
     }
 
     private fun initSort() {
@@ -85,6 +99,22 @@ class FilterFragment : RxFragment(), NewListEvent {
                 context, R.array.sortBy, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spSortBy.adapter = adapter
+
+        binding.spSortBy.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                if (checkSpSort) {
+                    val array = resources.getStringArray(R.array.sortBy_code)
+                    viewModel.setSortBy(array[position])
+                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
+                }
+                checkSpSort = true
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
+        }
     }
 
     private fun initCountries() {
@@ -92,6 +122,26 @@ class FilterFragment : RxFragment(), NewListEvent {
                 context, R.array.countries, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spCountries.adapter = adapter
+
+        binding.spCountries.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                if (checkSpCountry) {
+                    if (position - 1 < 0) {
+                        viewModel.setCountry("")
+                    } else {
+                        val array = resources.getStringArray(R.array.countries_code)
+                        viewModel.setCountry(array[position - 1])
+                    }
+                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
+                }
+                checkSpCountry = true
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
+        }
     }
 
     private fun initLanguages() {
@@ -99,6 +149,26 @@ class FilterFragment : RxFragment(), NewListEvent {
                 context, R.array.languages, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spLanguages.adapter = adapter
+
+        binding.spLanguages.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                if (checkSpLanguage) {
+                    if (position - 1 < 0) {
+                        viewModel.setLanguage("")
+                    } else {
+                        val array = resources.getStringArray(R.array.languages_code)
+                        viewModel.setLanguage(array[position - 1])
+                    }
+                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
+                }
+                checkSpLanguage = true
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
+        }
     }
 
     private fun initCategories() {
@@ -106,6 +176,52 @@ class FilterFragment : RxFragment(), NewListEvent {
                 context, R.array.categories, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spCategories.adapter = adapter
+
+        binding.spCategories.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                if (checkSpCategory) {
+                    if (position == 0) {
+                        viewModel.setCategory("")
+                    } else {
+                        val array = resources.getStringArray(R.array.categories)
+                        viewModel.setCategory(array[position])
+                    }
+
+                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
+                }
+                checkSpCategory = true
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
+        }
+    }
+
+    private fun listenerSearch() {
+        binding.etBox.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if (!s.empty()) {
+                    goToSearch()
+                }
+            }
+        })
+    }
+
+    private fun goToSearch() {
+        viewModel.setKeyWord(binding.etBox.text.toString())
+        viewModel.setDateFrom(binding.tvFrom.text.toString())
+        viewModel.setDateTo(binding.tvTo.text.toString())
+        listener?.search(viewModel.getFilter())
     }
 
     override fun onAttach(context: Context) {
@@ -123,11 +239,11 @@ class FilterFragment : RxFragment(), NewListEvent {
     }
 
     override fun onClickSearch() {
-        listener?.onSearch(filter)
+        goToSearch()
     }
 
     interface OnFragmentInteractionListener {
-        fun onSearch(filter: Filter)
+        fun search(filter: Filter)
     }
 
     override fun initializeComponent() {
@@ -141,9 +257,10 @@ class FilterFragment : RxFragment(), NewListEvent {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(filter: Filter) =
                 FilterFragment().apply {
                     arguments = Bundle().apply {
+                        putString(Filter.KEY, Filter.adapter.toJson(filter))
                     }
                 }
     }

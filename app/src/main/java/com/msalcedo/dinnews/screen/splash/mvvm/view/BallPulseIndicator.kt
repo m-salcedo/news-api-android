@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.graphics.Canvas
 import android.graphics.Paint
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/7/18.

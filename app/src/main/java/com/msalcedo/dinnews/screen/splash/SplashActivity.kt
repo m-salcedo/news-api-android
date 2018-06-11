@@ -3,10 +3,10 @@ package com.msalcedo.dinnews.screen.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.msalcedo.dinnews.MainActivity
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
+import com.msalcedo.dinnews.screen.home.HomeActivity
 import com.msalcedo.dinnews.screen.splash.di.DaggerSplashComponent
 import com.msalcedo.dinnews.screen.splash.di.SplashModule
 import com.msalcedo.dinnews.screen.splash.mvvm.SplashViewModel
@@ -29,7 +29,7 @@ class SplashActivity : RxActivity() {
         viewModel.start()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ MainActivity.start(this) })
+                .subscribe({ HomeActivity.start(this) })
     }
 
     override fun initializeComponent() {

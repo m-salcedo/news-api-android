@@ -11,7 +11,7 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import com.msalcedo.dinnews.R
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/7/18.

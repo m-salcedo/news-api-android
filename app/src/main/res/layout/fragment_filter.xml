@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="eventHandler"
+            type="com.msalcedo.dinnews.screen.news.events.NewListEvent" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/spacing.xxxxlg">
+
+                <!-- Search bar -->
+                <LinearLayout
+                    android:id="@+id/llBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/etBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/spacing.xs"
+                        android:layout_marginLeft="@dimen/spacing.xs"
+                        android:layout_marginRight="@dimen/spacing.xs"
+                        android:layout_marginTop="@dimen/spacing.xsm"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_search"
+                        android:gravity="left"
+                        android:hint="@string/text_top_bar"
+                        android:inputType="textCapSentences"
+                        android:maxLines="1">
+
+                        <requestFocus />
+                    </EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <TextView
+                        android:id="@+id/tvFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_date_range"
+                        android:gravity="left"
+                        android:hint="@string/from"
+                        android:paddingStart="@dimen/spacing.sm"
+                        tools:ignore="RtlSymmetry" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <TextView
+                        android:id="@+id/tvTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_date_range"
+                        android:gravity="left"
+                        android:hint="@string/to"
+                        android:paddingStart="@dimen/spacing.sm" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_search"
+                        android:gravity="left" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spLanguages"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_search"
+                        android:gravity="left" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spCountries"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_search"
+                        android:gravity="left" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/transparent">
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spSortBy"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:drawableEnd="@drawable/ic_action_search"
+                        android:gravity="left" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                style="@style/Button.Purple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing.xsm"
+                android:layout_marginLeft="@dimen/spacing.md"
+                android:layout_marginRight="@dimen/spacing.md"
+                android:onClick="@{() -> eventHandler.onClickSearch()}"
+                android:text="@string/search" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>

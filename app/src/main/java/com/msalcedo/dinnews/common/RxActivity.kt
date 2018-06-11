@@ -2,9 +2,12 @@ package com.msalcedo.dinnews.common
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
+import com.msalcedo.dinnews.R
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -90,6 +93,25 @@ open class RxActivity : AppCompatActivity() {
         savedInstanceState?.let { onCreateSubject?.onNext(it) }
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         init()
+
+        if (resources.getBoolean(R.bool.twoPaneMode)) {
+            initLandscape()
+        } else {
+            initPortrait()
+        }
+    }
+
+    open fun initPortrait() {}
+
+    open fun initLandscape() {}
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        requestedOrientation = if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
     }
 
     open fun init() {}

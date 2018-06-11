@@ -20,7 +20,7 @@ class AuthenticationInterceptor @Inject constructor(
 
     override fun intercept(chain: Interceptor.Chain): Response? {
         val newRequest = chain.request().newBuilder()
-                .addHeader(Constant.Key.AUTHORIZATION,  Constant.Key.BEARER + {context.getString(R.string.api_key_news)})
+                .addHeader(Constant.Key.AUTHORIZATION, Constant.Key.BEARER + context.getString(R.string.api_key_news))
                 .build()
         return chain.proceed(newRequest)
     }

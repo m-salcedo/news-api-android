@@ -10,4 +10,12 @@
     <string name="title_activity_splash">Splash</string>
     <string name="splash_bottom">© 2018 m-salcedo</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_top_bar">Search</string>
+    <string name="retry">Retry</string>
+    <string name="from">From: All time</string>
+    <string name="search">search</string>
+    <string name="to">To: All time</string>
+
 </resources>

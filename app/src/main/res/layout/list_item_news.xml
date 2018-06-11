@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing.xs"
+        android:paddingLeft="@dimen/spacing.xs"
+        android:paddingRight="@dimen/spacing.xs">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/ivNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@mipmap/ic_launcher" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/news_item_shadow_layer" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing.md">
+
+                <TextView
+                    android:id="@+id/tvNewsTitle"
+                    style="@style/News.ListTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+                    tools:text="Prueba de Noticesif dfioijds hfieojiwe foijo jweufhoij woiefj opjewff oijewia" />
+
+                <TextView
+                    android:id="@+id/tvNewsDescription"
+                    style="@style/News.ListDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+                    tools:text="Prueba de Noticesif" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_transparency" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>

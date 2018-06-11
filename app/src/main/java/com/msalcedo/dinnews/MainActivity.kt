@@ -3,10 +3,7 @@ package com.msalcedo.dinnews
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.intentFor
 import timber.log.Timber
 
@@ -19,11 +16,12 @@ class MainActivity : RxActivity() {
 
         Timber.d("testing")
 
-        addDisposable(
-                Application.component.api().everything()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ Timber.d("testiing") }, { }))
+//        addDisposable(
+//                Application.component.api().everything(params.key)
+//                        .subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe({ Timber.d("testiing") }, { }))
+//
     }
 
     companion object {

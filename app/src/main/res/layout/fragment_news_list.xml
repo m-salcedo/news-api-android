@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="eventHandler"
+            type="com.msalcedo.dinnews.screen.news.events.NewListEvent" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Search bar -->
+        <LinearLayout
+            android:id="@+id/llBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing.xs"
+            android:layout_marginRight="@dimen/spacing.xs"
+            android:layout_marginTop="@dimen/spacing.xsm">
+
+            <TextView
+                android:id="@+id/tvBox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing.xlg"
+                android:layout_gravity="center"
+                android:background="@drawable/box_text"
+                android:drawableEnd="@drawable/ic_action_search"
+                android:gravity="left"
+                android:hint="@string/text_top_bar"
+                android:onClick="@{() -> eventHandler.onClickSearch()}" />
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                tools:listitem="@layout/list_item_news" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</layout>

@@ -121,7 +121,7 @@ class ArticlesDataSource(
     private fun everything(page: Int, filter: Filter): Single<ResponseArticle> {
         return api.everything(page,
                 filter.sources,
-                filter.language,
+                filter.getLanguageDefault(),
                 filter.from,
                 filter.to,
                 filter.getKeyWord(),
@@ -133,7 +133,7 @@ class ArticlesDataSource(
                 filter.sources,
                 filter.category,
                 filter.country,
-                filter.language,
+                filter.getLanguageDefault(),
                 filter.getKeyWord(),
                 filter.sortBy)
     }

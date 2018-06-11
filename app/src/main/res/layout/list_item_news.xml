@@ -6,7 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/spacing.xs"
-        android:paddingBottom="@dimen/spacing.xs"
         android:paddingLeft="@dimen/spacing.xs"
         android:paddingRight="@dimen/spacing.xs">
 

@@ -10,35 +10,17 @@
             type="com.msalcedo.dinnews.screen.news.events.NewListEvent" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeNews"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerNews"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:overScrollMode="never"
-                android:paddingTop="@dimen/spacing.xxmlg"
-                tools:listitem="@layout/list_item_news" />
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
 
         <!-- Search bar -->
         <LinearLayout
             android:id="@+id/llBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing.xs"
             android:layout_marginLeft="@dimen/spacing.xs"
             android:layout_marginRight="@dimen/spacing.xs"
             android:layout_marginTop="@dimen/spacing.xsm">
@@ -53,8 +35,22 @@
                 android:gravity="left"
                 android:hint="@string/text_top_bar"
                 android:onClick="@{() -> eventHandler.onClickSearch()}" />
-
         </LinearLayout>
 
-    </RelativeLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                tools:listitem="@layout/list_item_news" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 </layout>

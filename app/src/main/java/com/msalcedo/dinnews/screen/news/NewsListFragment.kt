@@ -24,6 +24,8 @@ import com.msalcedo.dinnews.screen.news.events.NewListEvent
 import com.msalcedo.dinnews.screen.news.mvvm.NewsViewModel
 import timber.log.Timber
 import javax.inject.Inject
+import android.support.v7.widget.RecyclerView
+
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/8/18.

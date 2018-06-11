@@ -33,18 +33,18 @@ class Article {
     val publishedAt: String? = null
 
     fun getTitle(): Spanned? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            Html.fromHtml(title)
+        return when {
+            title.empty() -> null
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+            else -> Html.fromHtml(title)
         }
     }
 
     fun getDescription(): Spanned? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            Html.fromHtml(description)
+        return when {
+            description.empty() -> null
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT)
+            else -> Html.fromHtml(description)
         }
     }
 

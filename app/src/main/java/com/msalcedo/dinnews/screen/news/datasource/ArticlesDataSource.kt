@@ -120,21 +120,21 @@ class ArticlesDataSource(
 
     private fun everything(page: Int, filter: Filter): Single<ResponseArticle> {
         return api.everything(page,
-                filter.sources,
+                filter.sources.id,
                 filter.getLanguageDefault(),
                 filter.from,
                 filter.to,
                 filter.getKeyWord(),
-                filter.sortBy)
+                filter.sortBy!!.id)
     }
 
     private fun topHeadlines(page: Int, filter: Filter): Single<ResponseArticle> {
         return api.topHeadlines(page,
-                filter.sources,
-                filter.category,
-                filter.country,
+                filter.sources.id,
+                filter.category!!.id,
+                filter.country!!.id,
                 filter.getLanguageDefault(),
                 filter.getKeyWord(),
-                filter.sortBy)
+                filter.sortBy!!.id)
     }
 }

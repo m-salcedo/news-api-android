@@ -18,7 +18,6 @@ import com.msalcedo.dinnews.screen.home.di.HomeModule
 import com.msalcedo.dinnews.screen.home.mvvm.HomeViewModel
 import com.msalcedo.dinnews.screen.news.NewsListFragment
 import org.jetbrains.anko.intentFor
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -40,28 +39,44 @@ class HomeActivity : RxActivity(),
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
     }
 
-    override fun init() {
-        viewModel.start()
-        mountFragment(NewsListFragment.newInstance(viewModel.getFilter()), R.id.container)
+    override fun initPortrait() {
+        super.initPortrait()
+        if (viewModel.starting) {
+            mountFilter()
+            viewModel.starting = false
+        } else {
+            mountList()
+        }
     }
 
     override fun initLandscape() {
-        mountFragment(FilterFragment.newInstance(viewModel.getFilter()), R.id.containerLeft)
+        super.initLandscape()
+        mountList()
+        mountFragment(FilterFragment.instance(viewModel.getFilter(), viewModel.starting), R.id.containerLeft)
+        viewModel.starting = false
     }
 
     private fun mountFragment(fragment: Fragment, containter: Int) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(containter, fragment)
-        transaction.commit()
+        val fragmentManager = supportFragmentManager
+
+        fragmentManager.beginTransaction().replace(containter, fragment).commit()
+    }
+
+    private fun mountList() {
+        mountFragment(NewsListFragment.newInstance(viewModel.getFilter()), R.id.container)
+    }
+
+    private fun mountFilter() {
+        mountFragment(FilterFragment.instance(viewModel.getFilter(), viewModel.starting), R.id.container)
     }
 
     override fun search(filter: Filter) {
         viewModel.setFilter(filter)
-        mountFragment(NewsListFragment.newInstance(viewModel.getFilter()), R.id.container)
+        mountList()
     }
 
     override fun onClickSearch() {
-        mountFragment(FilterFragment.newInstance(viewModel.getFilter()), R.id.container)
+        mountFilter()
     }
 
     override fun initializeComponent() {
@@ -74,8 +89,20 @@ class HomeActivity : RxActivity(),
     }
 
     override fun onArticleSelected(article: Article) {
-        Timber.d("Item selected: $article")
         DetailActivity.start(this, article)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        FilterFragment.instance().onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onBackPressed() {
+        if (viewModel.landscapeMode() || !FilterFragment.instance().isVisible) {
+            super.onBackPressed()
+        } else {
+            mountList()
+        }
     }
 
     companion object {

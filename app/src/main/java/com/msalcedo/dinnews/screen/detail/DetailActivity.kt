@@ -1,13 +1,16 @@
 package com.msalcedo.dinnews.screen.detail
 
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
+import com.msalcedo.dinnews.common.ext.empty
 import com.msalcedo.dinnews.databinding.ActivityDetailBinding
 import com.msalcedo.dinnews.models.Article
 import com.msalcedo.dinnews.screen.detail.di.DaggerDetailComponent
@@ -16,9 +19,6 @@ import com.msalcedo.dinnews.screen.detail.mvvm.DetailViewModel
 import com.msalcedo.dinnews.screen.news.events.ArticleEvent
 import org.jetbrains.anko.intentFor
 import javax.inject.Inject
-import android.content.Intent
-import android.net.Uri
-import com.msalcedo.dinnews.common.ext.empty
 
 
 class DetailActivity : RxActivity(), ArticleEvent {
@@ -34,15 +34,15 @@ class DetailActivity : RxActivity(), ArticleEvent {
         initView()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            binding.tvDescription?.justificationMode = JUSTIFICATION_MODE_INTER_WORD
+            binding.tvDescription.justificationMode = JUSTIFICATION_MODE_INTER_WORD
         }
     }
 
     private fun initView() {
-        binding.tvTitle!!.text = viewModel.article?.getTitle() ?: ""
-        binding.tvDate!!.text = viewModel.article!!.publishedAt
-        binding.tvAuthor!!.text = viewModel.article?.author ?: ""
-        binding.tvDescription!!.text = viewModel.article?.getDescription() ?: ""
+        binding.tvTitle.text = viewModel.article?.getTitle() ?: ""
+        binding.tvDate.text = viewModel.article!!.publishedAt
+        binding.tvAuthor.text = viewModel.article?.author ?: ""
+        binding.tvDescription.text = viewModel.article?.getDescription() ?: ""
         Application.component.picasso().load(viewModel.article!!.urlToImage)
                 .placeholder(R.drawable.placeholder_bg)
                 .into(binding.ivNews)
@@ -54,8 +54,8 @@ class DetailActivity : RxActivity(), ArticleEvent {
     }
 
     private fun initToolbar() {
-        binding.toolbar!!.title = ""
-        binding.toolbar!!.setNavigationOnClickListener({
+        binding.toolbar.title = ""
+        binding.toolbar.setNavigationOnClickListener({
             onBackPressed()
         })
         setSupportActionBar(binding.toolbar)

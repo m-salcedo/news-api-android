@@ -24,7 +24,6 @@ import com.msalcedo.dinnews.screen.news.events.NewListEvent
 import com.msalcedo.dinnews.screen.news.mvvm.NewsViewModel
 import timber.log.Timber
 import javax.inject.Inject
-import android.support.v7.widget.RecyclerView
 
 
 /**
@@ -86,6 +85,13 @@ class NewsListFragment : RxFragment(), NewListEvent {
                 articleAdapter.submitList(resultList)
                 articleAdapter.listTopHeadlines(resultTop)
                 binding.recyclerNews.scrollToPosition(0)
+
+                if (resultList == null || resultList.isEmpty()) {
+                    binding.emptyView.visibility = View.VISIBLE
+                } else {
+                    binding.emptyView.visibility = View.GONE
+
+                }
             })
         })
         viewModel.getNetworkState().observe(this, Observer<NetworkState> { articleAdapter.setNetworkState(it) })
@@ -151,6 +157,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
     }
 
     companion object {
+        val KEY: String = NewsListFragment.javaClass.name
 
         @JvmStatic
         fun newInstance(filter: Filter) =

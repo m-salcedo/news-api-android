@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModel
 import android.os.Bundle
 import com.msalcedo.dinnews.app.modules.api.InterfaceApi
 import com.msalcedo.dinnews.models.Article
-import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/11/18.

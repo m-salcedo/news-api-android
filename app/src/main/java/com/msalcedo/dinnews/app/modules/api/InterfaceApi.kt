@@ -1,6 +1,7 @@
 package com.msalcedo.dinnews.app.modules.api
 
 import com.msalcedo.dinnews.models.ResponseArticle
+import com.msalcedo.dinnews.models.ResponseSource
 import com.msalcedo.dinnews.utils.Constant
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -31,5 +32,8 @@ interface InterfaceApi {
                    @Query("q") q: String?,
                    @Query("sortBy") sortBy: String?)
             : Single<ResponseArticle>
+
+    @GET(Constant.Url.Api.sources)
+    fun sources(): Single<ResponseSource>
 
 }

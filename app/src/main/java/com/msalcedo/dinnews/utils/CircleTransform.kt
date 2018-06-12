@@ -2,9 +2,6 @@ package com.msalcedo.dinnews.utils
 
 import android.graphics.*
 import com.squareup.picasso.Transformation
-import android.graphics.BitmapShader
-import android.graphics.Bitmap
-
 
 
 /**

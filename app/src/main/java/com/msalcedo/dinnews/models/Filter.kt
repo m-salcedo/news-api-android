@@ -1,5 +1,6 @@
 package com.msalcedo.dinnews.models
 
+import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.ext.empty
 
@@ -9,37 +10,27 @@ import com.msalcedo.dinnews.common.ext.empty
  */
 class Filter {
 
-    companion object {
-        private val KEYWORD = "world cup"
-        private val LANGUAGE = "en"
-        const val KEY = "filter"
-        val adapter = Application.component.moshi().adapter(Filter::class.java)!!
-    }
-
-    var country: String? = null
-        get() {
-            return if (sources != null) null else field
-        }
-    var category: String? = null
-        get() {
-            return if (sources != null) null else field
-        }
-
     var q: String? = null
-    var sortBy: String? = null
+    var sortBy: Source? = Source(
+            Application.component.resources().getString(R.string.sort_default_name),
+            Application.component.resources().getString(R.string.sort_default_code))
     var from: String? = null
     var to: String? = null
-    var language: String? = null
-    var sources: String? = null
-    var positionSortBy: Int = 0
-    var positionLanguage: Int = 0
-    var positionCategory: Int = 0
-    var positionCountry: Int = 0
+    var language: Source = Source("", "")
+    var sources: Source = Source("", "")
+
+    var country: Source? = Source("", "")
+        get() {
+            return if (!sources.empty()) Source("", "") else field
+        }
+    var category: Source? = Source("", "")
+        get() {
+            return if (!sources.empty()) Source("", "") else field
+        }
 
     private fun empty(): Boolean {
-        return category.empty() &&
-                language.empty() &&
-                country.empty()
+        return q.empty() &&
+        sources.empty()
     }
 
     override fun toString(): String {
@@ -51,6 +42,13 @@ class Filter {
     }
 
     fun getLanguageDefault(): String? {
-        return if (language.empty() && empty()) LANGUAGE else language
+        return if (language.empty() && empty()) LANGUAGE else language!!.id
+    }
+
+    companion object {
+        private val KEYWORD = "trump"
+        private val LANGUAGE = "en"
+        const val KEY = "filter"
+        val adapter = Application.component.moshi().adapter(Filter::class.java)!!
     }
 }

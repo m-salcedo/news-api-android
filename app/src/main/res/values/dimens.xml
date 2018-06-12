@@ -4,10 +4,13 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="avatar.lg">120dp</dimen>
+    <dimen name="avatar.lg">200dp</dimen>
     <dimen name="avatar.md">100dp</dimen>
     <dimen name="avatar.xs">70dp</dimen>
     <dimen name="term_icon">10dp</dimen>
+
+    <dimen name="text.toolbar_title">@dimen/text.default</dimen>
+    <dimen name="text.toolbar_subtitle">@dimen/text.xs</dimen>
 
     <!-- Text Sizes -->
     <dimen name="text.xxxs">6sp</dimen>
@@ -65,5 +68,6 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="item_recycler_size_normal">56dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="toolbar_expanded_height">110dp</dimen>
 
 </resources>

@@ -55,6 +55,7 @@ interface Constant {
             companion object {
                 const val version = Character.BAR + "v2" + Character.BAR
                 const val everything = version + "everything"
+                const val sources = version + "sources"
                 const val topHeadlines = version + "top-headlines"
             }
         }

@@ -1,7 +1,6 @@
 package com.msalcedo.dinnews.screen.filter.di
 
 import android.arch.lifecycle.ViewModelProviders
-import com.msalcedo.dinnews.app.modules.api.InterfaceApi
 import com.msalcedo.dinnews.screen.filter.FilterFragment
 import com.msalcedo.dinnews.screen.filter.mvvm.FilterContract
 import com.msalcedo.dinnews.screen.filter.mvvm.FilterView
@@ -31,9 +30,5 @@ class FilterModule(private  val  fragment: FilterFragment) {
 
     @Provides
     @FilterScope
-    fun provideViewModel(api: InterfaceApi): FilterViewModel {
-        val viewModel = ViewModelProviders.of(fragment).get(FilterViewModel::class.java)
-        viewModel.init(api)
-        return viewModel
-    }
+    fun provideViewModel(): FilterViewModel = ViewModelProviders.of(fragment).get(FilterViewModel::class.java)
 }

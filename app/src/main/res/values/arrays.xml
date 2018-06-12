@@ -5,7 +5,6 @@
         <item>Sort by: Relevancy</item>
         <item>Sort by: Popularity</item>
         <item>Sort by: PublishedAt</item>
-        <item>Sort by: Relevancy</item>
     </array>
 
     <array name="sortBy_code">
@@ -16,7 +15,6 @@
     </array>
 
     <array name="categories">
-        <item>All categories</item>
         <item>Business</item>
         <item>Entertainment</item>
         <item>General</item>
@@ -43,7 +41,6 @@
     </array>
 
     <array name="languages">
-        <item>All languages</item>
         <item>Arabic</item>
         <item>German</item>
         <item>English</item>
@@ -115,7 +112,6 @@
     </array>
 
     <array name="countries">
-        <item>All countries</item>
         <item>United Arab Emirates</item>
         <item>Argentina</item>
         <item>Austria</item>

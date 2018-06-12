@@ -56,7 +56,43 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/selector_transparency">
+
+                    <TextView
+                        android:id="@+id/tvSource"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:gravity="left"
+                        android:hint="@string/hint_sources"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing.md"
+                    android:layout_marginRight="@dimen/spacing.md"
+                    android:layout_marginTop="@dimen/spacing.xsm"
+                    android:background="@drawable/selector_transparency">
+
+                    <TextView
+                        android:id="@+id/tvSortBy"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing.xlg"
+                        android:layout_gravity="center"
+                        android:background="@drawable/box_text"
+                        android:gravity="left"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
                     android:layout_marginTop="@dimen/spacing.xsm"
@@ -80,7 +116,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
                     android:layout_marginTop="@dimen/spacing.xsm"
@@ -102,77 +137,58 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
                     android:layout_marginTop="@dimen/spacing.xsm"
-                    android:background="@drawable/transparent">
+                    android:background="@drawable/selector_transparency">
 
-                    <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/spCategories"
+                    <TextView
+                        android:id="@+id/tvLanguages"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing.xlg"
                         android:layout_gravity="center"
                         android:background="@drawable/box_text"
-                        android:drawableEnd="@drawable/ic_action_search"
-                        android:gravity="left" />
+                        android:gravity="left"
+                        android:hint="@string/hint_language"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
                     android:layout_marginTop="@dimen/spacing.xsm"
-                    android:background="@drawable/transparent">
+                    android:background="@drawable/selector_transparency">
 
-                    <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/spLanguages"
+                    <TextView
+                        android:id="@+id/tvCategories"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing.xlg"
                         android:layout_gravity="center"
                         android:background="@drawable/box_text"
-                        android:drawableEnd="@drawable/ic_action_search"
-                        android:gravity="left" />
+                        android:gravity="left"
+                        android:hint="@string/hint_category"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
                     android:layout_marginTop="@dimen/spacing.xsm"
-                    android:background="@drawable/transparent">
+                    android:background="@drawable/selector_transparency">
 
-                    <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/spCountries"
+                    <TextView
+                        android:id="@+id/tvCountries"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing.xlg"
                         android:layout_gravity="center"
                         android:background="@drawable/box_text"
-                        android:drawableEnd="@drawable/ic_action_search"
-                        android:gravity="left" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing.xs"
-                    android:layout_marginLeft="@dimen/spacing.md"
-                    android:layout_marginRight="@dimen/spacing.md"
-                    android:layout_marginTop="@dimen/spacing.xsm"
-                    android:background="@drawable/transparent">
-
-                    <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/spSortBy"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing.xlg"
-                        android:layout_gravity="center"
-                        android:background="@drawable/box_text"
-                        android:drawableEnd="@drawable/ic_action_search"
-                        android:gravity="left" />
+                        android:gravity="left"
+                        android:hint="@string/hint_countries"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
             </LinearLayout>

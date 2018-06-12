@@ -6,12 +6,11 @@ import android.os.Bundle
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
+import com.msalcedo.dinnews.models.Source
 import com.msalcedo.dinnews.screen.home.HomeActivity
 import com.msalcedo.dinnews.screen.splash.di.DaggerSplashComponent
 import com.msalcedo.dinnews.screen.splash.di.SplashModule
 import com.msalcedo.dinnews.screen.splash.mvvm.SplashViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.intentFor
 import javax.inject.Inject
 
@@ -26,10 +25,11 @@ class SplashActivity : RxActivity() {
     }
 
     override fun init() {
-        viewModel.start()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ HomeActivity.start(this) })
+        addDisposable(viewModel.start()
+                .subscribe({
+                    Source.save(this, it.sources as MutableList<Source>)
+                    HomeActivity.start(this)
+                }, { }))
     }
 
     override fun initializeComponent() {
@@ -42,6 +42,8 @@ class SplashActivity : RxActivity() {
     }
 
     companion object {
+        const val KEY: String = "starting"
+
         fun start(context: Context) {
             val intent = context.intentFor<SplashActivity>()
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

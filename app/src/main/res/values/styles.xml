@@ -139,6 +139,36 @@
         <item name="fontPath">@string/font_extra_bold</item>
     </style>
 
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="fontPath">@string/font_semi_bold</item>
+    </style>
+
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat">
+        <item name="fontPath">@string/font_regular</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text.toolbar_title</item>
+    </style>
+
+    <style name="Toolbar.SubtitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">@color/black_50_percent</item>
+        <item name="android:textSize">@dimen/text.toolbar_subtitle</item>
+    </style>
+
+    <style name="ToolbarTheme.ExpandedTitle" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="fontPath">@string/font_bold</item>
+    </style>
+
+    <style name="Toolbar.ExpandedTitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="Toolbar.CollapsedTitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <!-- /Toolbar -->
 
 

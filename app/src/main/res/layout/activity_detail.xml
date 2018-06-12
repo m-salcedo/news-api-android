@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/spacing.xlg"
+                android:paddingBottom="@dimen/spacing.lg"
                 android:paddingTop="@dimen/spacing.lg">
 
                 <TextView
@@ -42,8 +42,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing.md"
                     android:layout_marginRight="@dimen/spacing.md"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_bg" />
+                    android:adjustViewBounds="true"
+                    android:minHeight="150dp"
+                    android:scaleType="fitStart"
+                    tools:src="@drawable/placeholder_bg" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -91,6 +93,7 @@
                     style="@style/Button.White"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:layout_marginBottom="@dimen/spacing.sm"
                     android:layout_marginLeft="@dimen/spacing.xxxlg"
                     android:layout_marginRight="@dimen/spacing.xxxlg"
                     android:layout_marginTop="@dimen/spacing.sm"

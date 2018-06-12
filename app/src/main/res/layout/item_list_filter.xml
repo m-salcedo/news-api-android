@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_transparency"
+        android:minHeight="@dimen/spacing.xxlg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing.sm"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.xlg"
+                app:fontPath="@string/font_extra_bold"
+                tools:ignore="MissingPrefix"
+                tools:text="Texto como titulo" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_50_percent"
+                android:textSize="@dimen/text.sm"
+                app:fontPath="@string/font_extra_light"
+                tools:text="descripcion"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_purple"
+                android:textSize="@dimen/text.xs"
+                app:fontPath="@string/font_thin"
+                tools:ignore="MissingPrefix"
+                tools:text="utl"
+                tools:visibility="gone" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_transparency" />
+    </LinearLayout>
+
+</layout>

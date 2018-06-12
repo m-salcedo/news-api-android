@@ -26,7 +26,7 @@ class NetworkModule {
     @Provides
     @AppScope
     @CacheQualifier
-    fun provideCacheMaxSize(): Long = 10 * 1024 * 1024
+    fun provideCacheMaxSize(): Long = 5 * 1024 * 1024
 
     @Provides
     @AppScope

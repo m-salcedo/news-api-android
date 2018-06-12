@@ -30,12 +30,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:parentActivityName=".screen.splash.SplashActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustPan" />
-        <activity
             android:name=".screen.home.HomeActivity"
             android:configChanges="keyboardHidden|screenSize"
             android:launchMode="singleTask"
@@ -43,6 +37,12 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".screen.detail.DetailActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:parentActivityName=".screen.splash.SplashActivity"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".screen.filterlist.FilterListActivity"
             android:configChanges="keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:parentActivityName=".screen.splash.SplashActivity"

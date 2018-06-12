@@ -8,10 +8,8 @@ import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.ext.empty
 import com.squareup.moshi.Json
 import org.joda.time.DateTime
-import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
-import org.joda.time.format.ISODateTimeFormat
 
 
 /**

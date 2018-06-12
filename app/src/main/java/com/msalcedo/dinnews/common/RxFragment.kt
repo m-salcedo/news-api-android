@@ -76,11 +76,6 @@ open class RxFragment : Fragment() {
         onDestroySubject as Observable<Any>
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultSubject?.onNext(Result(requestCode, resultCode, data))
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeComponent()

@@ -1,5 +1,6 @@
 package com.msalcedo.dinnews.common
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -18,6 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/6/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
+@SuppressLint("Registered")
 open class RxActivity : AppCompatActivity() {
 
     private val rxLifeObserver = RxLifeObserver()
@@ -78,11 +80,6 @@ open class RxActivity : AppCompatActivity() {
         onDestroySubject as Observable<Any>
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultSubject?.onNext(Result(requestCode, resultCode, data))
-    }
-
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
@@ -107,10 +104,12 @@ open class RxActivity : AppCompatActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        requestedOrientation = if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        } else {
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        if (requestedOrientation != newConfig.orientation) {
+            requestedOrientation = if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
         }
     }
 

@@ -1,7 +1,9 @@
 package com.msalcedo.dinnews.screen.filter
 
+import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.text.Editable
@@ -9,10 +11,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import com.google.gson.Gson
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxFragment
@@ -22,9 +20,10 @@ import com.msalcedo.dinnews.models.Filter
 import com.msalcedo.dinnews.screen.filter.di.DaggerFilterComponent
 import com.msalcedo.dinnews.screen.filter.di.FilterModule
 import com.msalcedo.dinnews.screen.filter.mvvm.FilterViewModel
+import com.msalcedo.dinnews.screen.filterlist.FilterListActivity
 import com.msalcedo.dinnews.screen.news.events.NewListEvent
+import com.msalcedo.dinnews.screen.splash.SplashActivity
 import org.joda.time.DateTime
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -40,12 +39,6 @@ class FilterFragment : RxFragment(), NewListEvent {
     @Inject
     lateinit var viewModel: FilterViewModel
 
-    private var checkSpLanguage: Boolean = false
-    private var checkSpCountry: Boolean = false
-    private var checkSpCategory: Boolean = false
-    private var checkSpSort: Boolean = false
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -60,6 +53,10 @@ class FilterFragment : RxFragment(), NewListEvent {
 
         super.onCreateView(inflater, container, savedInstanceState)
 
+        if (viewModel.starting) {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_SOURCES)
+        }
+
         return this.binding.root
     }
 
@@ -67,6 +64,7 @@ class FilterFragment : RxFragment(), NewListEvent {
         initBoxSearch()
         initPicketDate()
         initCategories()
+        initSource()
         initLanguages()
         initCountries()
         initSort()
@@ -90,7 +88,7 @@ class FilterFragment : RxFragment(), NewListEvent {
         }
     }
 
-    fun fromDatePickerShow() {
+    private fun fromDatePickerShow() {
         val currentYear: Int
         val currentMonth: Int
         val currentDay: Int
@@ -99,7 +97,6 @@ class FilterFragment : RxFragment(), NewListEvent {
 
         if (!viewModel.getFromDate().empty()) {
             time = viewModel.parserDate().parseDateTime(viewModel.getFromDate())
-            Timber.d(Gson().toJson(time))
         }
 
         currentYear = time.year
@@ -109,7 +106,7 @@ class FilterFragment : RxFragment(), NewListEvent {
         DatePickerDialog(context, fromListener, currentYear, currentMonth, currentDay).show()
     }
 
-    fun toDatePickerShow() {
+    private fun toDatePickerShow() {
         val currentYear: Int
         val currentMonth: Int
         val currentDay: Int
@@ -118,7 +115,6 @@ class FilterFragment : RxFragment(), NewListEvent {
 
         if (!viewModel.getToDate().empty()) {
             time = viewModel.parserDate().parseDateTime(viewModel.getToDate())
-            Timber.d(Gson().toJson(time))
         }
 
         currentYear = time.year
@@ -128,23 +124,21 @@ class FilterFragment : RxFragment(), NewListEvent {
         DatePickerDialog(context, toListener, currentYear, currentMonth, currentDay).show()
     }
 
-    val fromListener: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+    private val fromListener: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
 
         var monthStr = month
         monthStr++
 
         binding.tvFrom.text = ("$year-$monthStr-$dayOfMonth")
-        Timber.d(binding.tvFrom.text.toString())
         viewModel.setDateFrom(binding.tvFrom.text.toString())
         if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
     }
 
-    val toListener: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+    private val toListener: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
         var monthStr = month
         monthStr++
 
         binding.tvTo.text = ("$year-$monthStr-$dayOfMonth")
-        Timber.d(binding.tvTo.text.toString())
         viewModel.setDateTo(binding.tvTo.text.toString())
         if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
     }
@@ -157,115 +151,46 @@ class FilterFragment : RxFragment(), NewListEvent {
     }
 
     private fun initSort() {
-        val adapter = ArrayAdapter.createFromResource(
-                context, R.array.sortBy, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spSortBy.adapter = adapter
+        binding.tvSortBy.text = (viewModel.getSortBy())
 
-        binding.spSortBy.setSelection(viewModel.getFilter().positionSortBy)
-
-        binding.spSortBy.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if (checkSpSort) {
-                    val array = resources.getStringArray(R.array.sortBy_code)
-                    viewModel.setSortBy(array[position], position)
-                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
-                }
-                checkSpSort = true
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // your code here
-            }
-
+        binding.tvSortBy.setOnClickListener {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_SORT_BY)
         }
     }
 
     private fun initCountries() {
-        val adapter = ArrayAdapter.createFromResource(
-                context, R.array.countries, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spCountries.adapter = adapter
+        binding.tvCountries.text = (viewModel.getCountry())
 
-        binding.spCountries.setSelection(viewModel.getFilter().positionCountry)
-
-        binding.spCountries.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if (checkSpCountry) {
-                    if (position - 1 < 0) {
-                        viewModel.setCountry("", position)
-                    } else {
-                        val array = resources.getStringArray(R.array.countries_code)
-                        viewModel.setCountry(array[position - 1], position)
-                    }
-                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
-                }
-                checkSpCountry = true
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // your code here
-            }
-
+        binding.tvCountries.setOnClickListener {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_COUNTRIES)
         }
+
+        binding.tvCountries.visibility = viewModel.categoryAndCountryVisibility()
     }
 
     private fun initLanguages() {
-        val adapter = ArrayAdapter.createFromResource(
-                context, R.array.languages, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spLanguages.adapter = adapter
+        binding.tvLanguages.text = (viewModel.getLanguage())
 
-        binding.spLanguages.setSelection(viewModel.getFilter().positionLanguage)
-
-        binding.spLanguages.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if (checkSpLanguage) {
-                    if (position - 1 < 0) {
-                        viewModel.setLanguage("", position)
-                    } else {
-                        val array = resources.getStringArray(R.array.languages_code)
-                        viewModel.setLanguage(array[position - 1], position)
-                    }
-                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
-                }
-                checkSpLanguage = true
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // your code here
-            }
-
+        binding.tvLanguages.setOnClickListener {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_LANGUAGES)
         }
     }
 
     private fun initCategories() {
-        val adapter = ArrayAdapter.createFromResource(
-                context, R.array.categories, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spCategories.adapter = adapter
+        binding.tvCategories.text = (viewModel.getCategory())
 
-        binding.spCategories.setSelection(viewModel.getFilter().positionCategory)
+        binding.tvCategories.setOnClickListener {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_CATEGORIES)
+        }
 
-        binding.spCategories.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if (checkSpCategory) {
-                    if (position == 0) {
-                        viewModel.setCategory("", position)
-                    } else {
-                        val array = resources.getStringArray(R.array.categories)
-                        viewModel.setCategory(array[position], position)
-                    }
+        binding.tvCategories.visibility = viewModel.categoryAndCountryVisibility()
+    }
 
-                    if (resources.getBoolean(R.bool.twoPaneMode)) goToSearch()
-                }
-                checkSpCategory = true
-            }
+    private fun initSource() {
+        binding.tvSource.text = (viewModel.getSource())
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // your code here
-            }
-
+        binding.tvSource.setOnClickListener {
+            FilterListActivity.start(activity!!, FilterListActivity.FILTER_SOURCES)
         }
     }
 
@@ -316,6 +241,22 @@ class FilterFragment : RxFragment(), NewListEvent {
         fun search(filter: Filter)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK && data != null) {
+
+            viewModel.setResult(requestCode, data)
+
+            if (resources.getBoolean(R.bool.twoPaneMode) || viewModel.starting) {
+                goToSearch()
+            }
+
+            init()
+        }
+
+        viewModel.starting = false
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun initializeComponent() {
         DaggerFilterComponent.builder()
                 .filterModule(
@@ -326,12 +267,31 @@ class FilterFragment : RxFragment(), NewListEvent {
     }
 
     companion object {
+
+        private var INSTANCE: FilterFragment? = null
+
         @JvmStatic
-        fun newInstance(filter: Filter) =
-                FilterFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(Filter.KEY, Filter.adapter.toJson(filter))
-                    }
+        fun instance(): FilterFragment {
+            return instance(null, false)
+        }
+
+        @JvmStatic
+        fun instance(filter: Filter?, starting: Boolean): FilterFragment {
+            var bundle = Bundle().apply {
+                if (filter != null) {
+                    putString(Filter.KEY, Filter.adapter.toJson(filter))
                 }
+                putBoolean(SplashActivity.KEY, starting)
+            }
+            if (INSTANCE == null) {
+                INSTANCE = FilterFragment().apply {
+                    arguments = bundle
+                }
+            } else {
+                INSTANCE!!.arguments = bundle
+            }
+            return INSTANCE as FilterFragment
+        }
+
     }
 }

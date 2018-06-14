@@ -13,11 +13,17 @@ import com.squareup.moshi.Json
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/6/18.
  * Copyright (c) m-salcedo. All rights reserved.
  */
-class Source(@Json(name = "name")
-             val name: String?,
-             @Json(name = "id")
-             val id: String?) {
+class Source() {
 
+    constructor(name: String?, id: String?) : this() {
+        this.name = name
+        this.id = id
+    }
+
+    @Json(name = "name")
+    var name: String? = ""
+    @Json(name = "id")
+    var id: String? = ""
     @Json(name = "description")
     val description: String? = null
     @Json(name = "url")
@@ -49,7 +55,7 @@ class Source(@Json(name = "name")
             prefsEditor.apply()
         }
 
-        fun get(context: Context) : MutableList<Source> {
+        fun get(context: Context): MutableList<Source> {
             val appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.applicationContext)
             val gson = Gson()
             val json = appSharedPrefs.getString(KEY, "")

@@ -1,6 +1,5 @@
 package com.msalcedo.dinnews.screen.filterlist.mvvm
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import android.content.Context

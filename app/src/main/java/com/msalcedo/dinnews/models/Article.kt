@@ -19,9 +19,9 @@ import org.joda.time.format.DateTimeFormatter
 class Article {
 
     companion object {
-        private val KEYWORD = "Europ"
         const val KEY = "article"
-        const val PLACEHOLDER_IMAGE: String = "https://cdn.pixabay.com/photo/2017/03/14/16/57/silver-2143730_1280.jpg"
+        const val PLACEHOLDER_IMAGE: String =
+                "https://cdn.pixabay.com/photo/2017/03/14/16/57/silver-2143730_1280.jpg"
         val adapter = Application.component.moshi().adapter(Article::class.java)!!
     }
 
@@ -59,7 +59,8 @@ class Article {
     fun getTitle(): Spanned? {
         return when {
             title.empty() -> null
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ->
+                Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
             else -> Html.fromHtml(title)
         }
     }
@@ -67,7 +68,8 @@ class Article {
     fun getDescription(): Spanned? {
         return when {
             description.empty() -> null
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT)
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ->
+                Html.fromHtml(description, Html.FROM_HTML_MODE_COMPACT)
             else -> Html.fromHtml(description)
         }
     }

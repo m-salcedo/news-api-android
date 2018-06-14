@@ -6,6 +6,7 @@ import com.msalcedo.dinnews.models.ResponseSource
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Mariangela Salcedo (msalcedo047@gmail.com) on 6/7/18.
@@ -18,13 +19,16 @@ class SplashViewModel : ViewModel(), SplashContract.ViewModel {
     private lateinit var sources: Single<ResponseSource>
 
     fun init(api: InterfaceApi) {
-       sources = api.sources()
-               .subscribeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
-   }
+        sources = api.sources()
+    }
 
     fun start(): Single<ResponseSource> {
-        return sources
+        return timer().toCompletable()
+                .andThen(sources)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
+
+    fun timer() = Single.just(true).delay(2000, TimeUnit.MILLISECONDS)
 
 }

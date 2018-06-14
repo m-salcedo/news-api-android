@@ -121,7 +121,6 @@ open class RxFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         onPauseSubject?.onNext(Any())
-
     }
 
     override fun onStop() {

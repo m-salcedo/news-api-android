@@ -3,8 +3,6 @@ package com.msalcedo.dinnews.common.ext
 import android.content.SharedPreferences
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,18 +23,6 @@ fun SharedPreferences.saveString(key: String, value: String) = edit().putString(
 
 fun ViewGroup.inflate(resourceId: Int, autoAttach: Boolean = false): View {
     return LayoutInflater.from(context).inflate(resourceId, this, autoAttach)
-}
-
-fun FragmentManager.add(containerId: Int, fragment: Fragment): Int {
-    return beginTransaction()
-            .add(containerId, fragment)
-            .commit()
-}
-
-fun FragmentManager.replace(containerId: Int, fragment: Fragment, backStack: String? = ""): Int {
-    val transaction = beginTransaction().replace(containerId, fragment)
-    if (backStack != "") transaction.addToBackStack(backStack)
-    return transaction.commit()
 }
 
 fun EditText.setError(resId: Int): Unit {

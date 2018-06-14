@@ -16,16 +16,16 @@ class Filter {
             Application.component.resources().getString(R.string.sort_default_code))
     var from: String? = null
     var to: String? = null
-    var language: Source = Source("", "")
-    var sources: Source = Source("", "")
+    var language: Source = Source()
+    var sources: Source = Source()
 
-    var country: Source? = Source("", "")
+    var country: Source? = Source()
         get() {
-            return if (!sources.empty()) Source("", "") else field
+            return if (!sources.empty()) Source() else field
         }
-    var category: Source? = Source("", "")
+    var category: Source? = Source()
         get() {
-            return if (!sources.empty()) Source("", "") else field
+            return if (!sources.empty()) Source() else field
         }
 
     private fun empty(): Boolean {

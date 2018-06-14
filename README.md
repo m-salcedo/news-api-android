@@ -28,19 +28,11 @@ Download [apk](https://drive.google.com/drive/folders/18EjGOwtY6KWYW1nEXAhun91hQ
 
 You can use portrait and landscape mode
 
-## Build
+## VCS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+- [Github](https://github.com/) 
+- [Gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html)
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more information about the Android Architecture Components read [here](https://developer.android.com/topic/libraries/architecture/)

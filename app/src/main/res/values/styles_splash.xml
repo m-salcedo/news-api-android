@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Splash" />
+
+    <style name="Splash.Container">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/bg</item>
+    </style>
+
+    <style name="Splash.Title">
+        <item name="android:layout_marginTop">@dimen/splash_title_margin_top</item>
+        <item name="android:text">@string/splash_title</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/splash_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontPath">@string/font_extra_bold</item>
+    </style>
+
+    <style name="Splash.Subtitle">
+        <item name="android:layout_marginTop">@dimen/splash_subtitle_margin_top</item>
+        <item name="android:text">@string/splash_subtitle</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/splash_subtitle</item>
+        <item name="fontPath">@string/font_light</item>
+    </style>
+
+</resources>

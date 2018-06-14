@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/dark_purple</color>
+    <color name="colorPrimaryDark">#241734</color>
+    <color name="colorAccent">@color/purple</color>
+
+    <color name="dark_purple">#2f1e44</color>
+    <color name="purple_medium">#5548b9</color>
+    <color name="purple">#6a59e6</color>
+    <color name="white">@android:color/white</color>
+    <color name="black">#201b26</color>
+
+    <color name="light_gray">#999999</color>
+    <color name="gray">#969696</color>
+    <color name="dark_gray">#333333</color>
+
+    <color name="elevation">#07000000</color>
+
+    <color name="white_ripple">#CCCCCC</color>
+    <color name="white_disabled">#BBBBBB</color>
+    <color name="white_pressed">#BBBBBB</color>
+    <color name="white_transparent">#38ffffff</color>
+
+    <color name="purple_ripple">#2f1e44</color>
+    <color name="purple_disabled">#2f1e44</color>
+    <color name="purple_pressed">#2f1e44</color>
+    <color name="purple_bg">#3A2E42</color>
+    <color name="purple_dark_transparent">#77241734</color>
+
+    <color name="black_10_percent">#1f000000</color>
+    <color name="black_30_percent">#4d000000</color>
+    <color name="black_40_percent">#60000000</color>
+    <color name="black_50_percent">#77000000</color>
+    <color name="black_transparency">#CF000000</color>
+
+    <color name="green_500">#38DE40</color>
+
+    <color name="gray_900">#201B26</color>
+    <color name="gray_850">#3d4248</color>
+    <color name="gray_700">#6C6C6C</color>
+    <color name="gray_650">#777777</color>
+    <color name="gray_600">#969696</color>
+    <color name="gray_550">#adadad</color>
+    <color name="gray_500">#C2C2C2</color>
+    <color name="gray_400">#D9D9D9</color>
+    <color name="gray_150">#f8f8f8</color>
+    <color name="gray_100">#F7F7FA</color>
+    <color name="gray_50">#F7F7FB</color>
+    <color name="gray_200">#e5e5e5</color>
+
+    <color name="violet_500">#6a59e6</color>
+    <color name="violet_700">#5c4ae4</color>
+    <color name="orange_300">#ffa223</color>
+    <color name="orange_500">#ff6702</color>
+    <color name="orange_600">#df5900</color>
+    <color name="orange_800">#993e01</color>
+    <color name="blue_500">#2193ce</color>
+    <color name="blue_600">#1c7aab</color>
+    <color name="blue_800">#125476</color>
+    <color name="red_500">#f71735</color>
+    <color name="red_200">#ff6a6a</color>
+    <color name="purple_500">#2f1E44</color>
+
 </resources>

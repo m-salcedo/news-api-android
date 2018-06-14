@@ -1,0 +1,73 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="avatar.lg">200dp</dimen>
+    <dimen name="avatar.md">100dp</dimen>
+    <dimen name="avatar.xs">70dp</dimen>
+    <dimen name="term_icon">10dp</dimen>
+
+    <dimen name="text.toolbar_title">@dimen/text.default</dimen>
+    <dimen name="text.toolbar_subtitle">@dimen/text.xs</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text.xxxs">6sp</dimen>
+    <dimen name="text.xxs">8sp</dimen>
+    <dimen name="text.xs">10sp</dimen>
+    <dimen name="text.xsm">12sp</dimen>
+    <dimen name="text.default">13sp</dimen>
+    <dimen name="text.sm">14sp</dimen>
+    <dimen name="text.lg">16sp</dimen>
+    <dimen name="text.xlg">18sp</dimen>
+    <dimen name="text.xxlg">20sp</dimen>
+    <dimen name="text.xxxlg">24sp</dimen>
+    <dimen name="text.xxxxlg">28sp</dimen>
+
+    <!-- Spacing Sizes -->
+    <dimen name="spacing.xxs">4dp</dimen>
+    <dimen name="spacing.xs">8dp</dimen>
+    <dimen name="spacing.xsm">10dp</dimen>
+    <dimen name="spacing.sm">16dp</dimen>
+    <dimen name="spacing.xmd">20dp</dimen>
+    <dimen name="spacing.md">24dp</dimen>
+    <dimen name="spacing.lg">32dp</dimen>
+    <dimen name="spacing.xlg">48dp</dimen>
+    <dimen name="spacing.xxlg">56dp</dimen>
+    <dimen name="spacing.xxmlg">60dp</dimen>
+    <dimen name="spacing.xxxlg">70dp</dimen>
+    <dimen name="spacing.xxxxlg">80dp</dimen>
+
+    <!-- General Sizes -->
+    <dimen name="view_padding">@dimen/spacing.md</dimen>
+    <dimen name="home_header_padding">@dimen/spacing.sm</dimen>
+
+    <dimen name="setting_title_top">25dp</dimen>
+    <dimen name="splash_title_margin_top">85dp</dimen>
+    <dimen name="splash_subtitle_margin_top">32dp</dimen>
+    <dimen name="splash_title">@dimen/spacing.xlg</dimen>
+    <dimen name="splash_subtitle">20sp</dimen>
+
+    <!-- Widgets -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_radius">7dp</dimen>
+    <dimen name="elevation">3dp</dimen>
+
+    <dimen name="appbar_max_size">240dp</dimen>
+    <dimen name="divider">1dp</dimen>
+
+    <dimen name="icon_call">60dp</dimen>
+    <dimen name="ic_padding">8dp</dimen>
+    <dimen name="icon">36dp</dimen>
+    <dimen name="dialog_radius">20dp</dimen>
+    <dimen name="play_arrow_icon">24dp</dimen>
+
+    <dimen name="dialog_confirm_session.rounded_button">8dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="item_recycler_size_normal">56dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="toolbar_expanded_height">110dp</dimen>
+
+</resources>

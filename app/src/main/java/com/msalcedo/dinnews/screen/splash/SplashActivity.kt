@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.msalcedo.dinnews.R
 import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.common.RxActivity
+import com.msalcedo.dinnews.models.Source
 import com.msalcedo.dinnews.screen.home.HomeActivity
 import com.msalcedo.dinnews.screen.splash.di.DaggerSplashComponent
 import com.msalcedo.dinnews.screen.splash.di.SplashModule
@@ -26,7 +27,7 @@ class SplashActivity : RxActivity() {
     override fun init() {
         addDisposable(viewModel.start()
                 .subscribe({
-
+                    Source.save(this, it.sources as MutableList<Source>)
                     HomeActivity.start(this)
                 }, { }))
     }

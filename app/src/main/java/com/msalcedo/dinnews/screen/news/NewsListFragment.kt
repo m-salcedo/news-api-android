@@ -16,6 +16,8 @@ import com.msalcedo.dinnews.databinding.FragmentNewsListBinding
 import com.msalcedo.dinnews.models.Article
 import com.msalcedo.dinnews.models.Filter
 import com.msalcedo.dinnews.screen.news.adapter.ArticleAdapter
+import com.msalcedo.dinnews.screen.news.datasource.NetworkState
+import com.msalcedo.dinnews.screen.news.datasource.Status
 import com.msalcedo.dinnews.screen.news.di.DaggerNewsComponent
 import com.msalcedo.dinnews.screen.news.di.NewsModule
 import com.msalcedo.dinnews.screen.news.events.NewListEvent
@@ -98,9 +100,23 @@ class NewsListFragment : RxFragment(), NewListEvent {
         super.initLandscape()
         binding.llBox.visibility = View.GONE
     }
-
     private fun initSwipeToRefresh() {
+        viewModel.getRefreshState().observe(this, Observer { networkState ->
+            if (articleAdapter.currentList != null) {
+                if (articleAdapter.currentList!!.size > 0) {
+                    binding.swipeNews.isRefreshing = networkState?.status == NetworkState.LOADING.status
+                } else {
+                    setInitialLoadingState(networkState)
+                }
+            } else {
+                setInitialLoadingState(networkState)
+            }
+        })
         binding.swipeNews.setOnRefreshListener({ viewModel.refresh() })
+    }
+
+    private fun setInitialLoadingState(networkState: NetworkState?) {
+        binding.swipeNews.isEnabled = networkState?.status == Status.SUCCESS
     }
 
     override fun onClickSearch() {

@@ -9,9 +9,6 @@
     <string name="splash_subtitle">C/MIND Mobile Task</string>
     <string name="title_activity_splash">Splash</string>
     <string name="splash_bottom">© 2018 m-salcedo</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_top_bar">Search</string>
     <string name="retry">Retry</string>
     <string name="from">From: All time</string>
@@ -96,7 +93,10 @@
     <string name="hint_category">All categories</string>
     <string name="hint_language">All languages</string>
     <string name="hint_countries">All countries</string>
-    <string name="sort_default_name">Sort by: Relevancy</string>
-    <string name="sort_default_code">Relevancy</string>
+    <string name="sort_default_name">Sort by: PublishedAt</string>
+    <string name="sort_default_code">PublishedAt</string>
+
+    <string name="trending_topic">Trending topic</string>
+    <string name="more_news">More news</string>
 
 </resources>

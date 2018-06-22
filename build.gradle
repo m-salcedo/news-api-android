@@ -6,7 +6,7 @@ buildscript {
         application_id = 'com.msalcedo.dinnews'
 
         version_code = 1
-        version_name = "1.0.0"
+        version_name = "1.0.1"
 
         // Versions of the build
         min_sdk_version = '17'

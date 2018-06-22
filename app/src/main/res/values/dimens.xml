@@ -69,5 +69,6 @@
     <dimen name="item_recycler_size_normal">56dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="toolbar_expanded_height">110dp</dimen>
+    <dimen name="text_list_title">28sp</dimen>
 
 </resources>

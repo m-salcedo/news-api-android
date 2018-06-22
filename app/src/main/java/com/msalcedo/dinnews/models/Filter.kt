@@ -46,7 +46,7 @@ class Filter {
     }
 
     companion object {
-        private val KEYWORD = "trump"
+        private val KEYWORD = "world cup"
         private val LANGUAGE = "en"
         const val KEY = "filter"
         val adapter = Application.component.moshi().adapter(Filter::class.java)!!

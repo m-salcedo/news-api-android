@@ -1,7 +1,6 @@
 package com.msalcedo.dinnews.screen.news.mvvm
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
@@ -10,9 +9,7 @@ import com.msalcedo.dinnews.app.Application
 import com.msalcedo.dinnews.app.modules.api.InterfaceApi
 import com.msalcedo.dinnews.models.Article
 import com.msalcedo.dinnews.models.Filter
-import com.msalcedo.dinnews.screen.news.datasource.ArticlesDataSource
 import com.msalcedo.dinnews.screen.news.datasource.ArticlesDataSourceFactory
-import com.msalcedo.dinnews.screen.news.datasource.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
 
@@ -68,12 +65,6 @@ class NewsViewModel : ViewModel(), NewsContract.ViewModel {
     fun refresh() {
         sourceFactory.articlesDataSourceLiveData.value!!.invalidate()
     }
-
-    fun getNetworkState(): LiveData<NetworkState> = Transformations.switchMap<ArticlesDataSource, NetworkState>(
-            sourceFactory.articlesDataSourceLiveData, { it.networkState })
-
-    fun getRefreshState(): LiveData<NetworkState> = Transformations.switchMap<ArticlesDataSource, NetworkState>(
-            sourceFactory.articlesDataSourceLiveData, { it.initialLoad })
 
     override fun onCleared() {
         super.onCleared()

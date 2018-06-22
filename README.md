@@ -1,8 +1,8 @@
 # DinNew
 
-This application is uses for get news from this API REST services https://newsapi.org .
+This application is uses for get news from this API REST services [https://newsapi.org](https://newsapi.org) .
 
->Note: This project was made in [Android](https://github.com/angular/angular-cli) 
+>Note: This project was made in [Android](https://developer.android.com) 
 with min sdk version = '17'.
 
 ## How to run

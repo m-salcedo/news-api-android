@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/spacing.xs"
         android:paddingRight="@dimen/spacing.xs"
-        android:paddingTop="@dimen/spacing.xs">
+        android:paddingBottom="@dimen/spacing.xs">
 
         <RelativeLayout
             android:layout_width="match_parent"

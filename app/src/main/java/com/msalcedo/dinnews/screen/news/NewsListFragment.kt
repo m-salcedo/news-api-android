@@ -59,8 +59,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
 
     override fun init() {
         Timber.d("test " + context?.getString(R.string.api_key_news))
-
-        binding.tvBox.text = viewModel.getKeyWord()
+        binding.tvBox.setQuery(viewModel.getKeyWord(), false)
         initAdapter()
         initSwipeToRefresh()
     }
@@ -100,6 +99,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
         super.initLandscape()
         binding.llBox.visibility = View.GONE
     }
+
     private fun initSwipeToRefresh() {
         viewModel.getRefreshState().observe(this, Observer { networkState ->
             if (articleAdapter.currentList != null) {
@@ -128,7 +128,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
         if (context is OnListFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
         }
     }
 
@@ -151,7 +151,7 @@ class NewsListFragment : RxFragment(), NewListEvent {
     }
 
     companion object {
-        val KEY: String = NewsListFragment.javaClass.name
+        val KEY: String = NewsListFragment::class.java.name
 
         @JvmStatic
         fun newInstance(filter: Filter) =
